@@ -1,0 +1,20 @@
+services:
+  bridge-nginx:
+    build: ./services/nginx
+    container_name: bridge-nginx
+    depends_on:
+      - bridge-assets
+    ports:
+      - "80:80"
+    networks:
+      - bridge-network
+  bridge-assets:
+    build: ./services/assets
+    container_name: bridge-assets
+    networks:
+      - bridge-network
+
+
+networks:
+  bridge-network:
+    driver: bridge
